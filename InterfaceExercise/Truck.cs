@@ -1,56 +1,76 @@
 ﻿using System;
 namespace InterfaceExercise
 {
-	public class Truck : ICompany, IVehicle
-	{
-		public Truck()
-		{
-		}
-        public int Wheels { get; set; } = 4;
-        public string Doors { get; set; } = "Four";
-        public int Seats { get; set; } = 5;
-        public string Speakers { get; set; } = "Harman and Kardon";
-        public string CompanyName { get; set; } = "Mercedes";
-        public string Logo { get; set; } = "Star with circle";
-        public bool HasChangedGears { get; set; }
+    public class Truck : IVehicle, ICompany
+    {
+        private bool isChanged;
 
-        public bool FourWheelDrive { get; set; }
+        public Truck()
+        {
+        }
+
+        public double EngineSize { get; set; } = 6;
+        public string Make { get; set; } = "Ford";
+        public string Model { get; set; } = "F150";
+        public int Year { get; set; } = 2021;
+        public int SeatCount { get; set; } = 3;
+        public string CompanyName { get; set; } = "Ford";
+        public string Motto { get; set; } = "Built strong and reliable";
+        public bool HasChangedGears { get; set; }
+        public bool HasFourWheelDrive { get; set; } = true;
+
 
         public void Drive()
         {
-            if (FourWheelDrive == true)
+            if (HasFourWheelDrive == true)
             {
-                Console.WriteLine($"4 Wheel Drive {GetType().Name} now driving foward...");
+                Console.WriteLine($"4-Wheel drive {GetType().Name} now driving forward . . .");
             }
             else
             {
-                Console.WriteLine($"{GetType().Name}now driving foward");
+                Console.WriteLine($"{GetType().Name} now driving forward . . .");
             }
         }
+
         public void Reverse()
         {
             if (HasChangedGears == true)
             {
-
-                Console.WriteLine($"{GetType().Name} now driving backwards...");
+                Console.WriteLine($"{GetType().Name} now reversing . . .");
                 HasChangedGears = false;
             }
-
             else
             {
                 Console.WriteLine("Can't reverse until we change gears");
             }
         }
+
         public void Park()
         {
-            Console.WriteLine($"{GetType().Name} now not moving...");
+            if (HasChangedGears == true)
+            {
+                Console.WriteLine($"{GetType().Name} now in park . . .");
+                HasChangedGears = false;
+            }
+            else
+            {
+                Console.WriteLine("Can't park until we change gears");
+            }
         }
-        public void ChangeGears(bool isChanged)
+
+        public void ChangedGears(bool hasChanged)
         {
             HasChangedGears = isChanged;
         }
 
-        
+        public void ChangeGears(bool isChnaged)
+        {
+            return;
+        }
+
+        public void DriveDefault()
+        {
+            return;
+        }
     }
 }
-
